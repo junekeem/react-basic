@@ -9,33 +9,23 @@ class Habits extends Component {
       { id: 3, name: 'Coding', count: 0 }
     ]
   }
+
   handleIncrement = habit => {
-    console.log(habit);
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
-    // this.setState({ habits: habits }); // if key name and value are same, one can be skipped
-    this.setState({ habits }); // if key name and value are same, one can be skipped
+    this.props.onIncrement(habit);
   }
   handleDecrement = habit => {
-    console.log(habit);
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count;
-    this.setState({ habits });
+    this.props.onDecrement(habit);
   }
   handleDelete = habit => {
-    console.log(habit);
-    const habits = this.state.habits.filter(item => item.id !== habit.id);
-    this.setState({ habits });
+    this.props.onDelete(habit);
   }
+
 
   render() {
     return (
       <ul>
         {
-          this.state.habits.map(habit => (<Habit
+          this.props.habits.map(habit => (<Habit
             key={habit.id}
             habit={habit}
             onIncrement={this.handleIncrement}
