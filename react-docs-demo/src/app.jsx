@@ -1,5 +1,6 @@
 import './app.css';
 import { Welcome } from './components/welcome'
+import { Clock } from "./components/clock";
 
 // function Welcome(props) {
 //   return <h1>Hello, {props.name}</h1>
@@ -8,9 +9,8 @@ import { Welcome } from './components/welcome'
 function App() {
   return (
     <>
-      <Welcome name="Adam"></Welcome>
-      <Welcome name="Barbara"></Welcome>
-      <Welcome name="Caesar"></Welcome>
+      <Welcome name="User"></Welcome>
+      <Clock />
     </>
   );
 }
