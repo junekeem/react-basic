@@ -6,6 +6,7 @@ import { EventDemo } from "./components/event-demo";
 import { ConditionalRenderingDemo } from "./components/conditional-rendering-demo";
 import { Form } from "./components/form";
 import { Calculator } from "./components/calculator";
+import { FilterableProductTable } from "./components/demo/filterable-product-table";
 
 // function Welcome(props) {
 //   return <h1>Hello, {props.name}</h1>
@@ -14,6 +15,7 @@ import { Calculator } from "./components/calculator";
 function App() {
   return (
     <>
+      <FilterableProductTable />
       <Welcome name="User"></Welcome>
       <Clock />
       <EventDemo />
