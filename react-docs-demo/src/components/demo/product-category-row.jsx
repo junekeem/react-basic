@@ -7,9 +7,11 @@ export class ProductCategoryRow extends React.Component {
 
   render() {
     return (
-      <th>
-        {this.props.category}
-      </th>
+      <tr>
+        <th>
+          {this.props.category}
+        </th>
+      </tr>
     );
   }
 
