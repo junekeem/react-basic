@@ -8,7 +8,9 @@ export class Searchbar extends React.Component {
   render() {
     return (
       <div>
-
+        <input type="text" value="search"/>
+        <input type="checkbox"/>
+        <label>Only show products in stock</label>
       </div>
     );
   }
