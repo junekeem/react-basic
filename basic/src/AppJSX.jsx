@@ -1,6 +1,6 @@
 import './App.css';
 
-function App() {
+function AppJSX() {
   const name = "user";
   const list = ['apple', 'banana', 'cranberry'];
   return (
@@ -17,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppJSX;
