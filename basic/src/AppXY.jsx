@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import './AppXY.css';
-import Pointer from "./components/Pointer";
 
 export default function AppXY() {
-  const [coordinate, setCoordinate] = useState({ coordinateX: 0, coordinateY: 0 });
-  const handleCoordinate = (event) => {
-    setCoordinate({
-      coordinateX: event.clientX,
-      coordinateY: event.clientY
-    });
-  }
-
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   return (
-    <div className='container' onMouseMove={handleCoordinate}>
-      <Pointer coordinate={coordinate}/>
+    <div
+      className='container'
+      onPointerMove={(e) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+        // 만약 수평으로만 이동이 가능하다면?
+        // setPosition((prev) => ({ ...prev, x: e.clientX }));
+      }}
+    >
+      <div
+        className='pointer'
+        style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+      />
     </div>
   );
 }
