@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 export default function Products() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   const [products, setProducts] = useState([]);
   const [checked, setChecked] = useState(false);
 
@@ -16,16 +18,24 @@ export default function Products() {
   //   })
 
   useEffect(() => {
+    setLoading(true);
+    setError(undefined);
     fetch(`data/${checked ? 'sale_' : ''}products.json`)
       .then((res) => res.json())
       .then((data) => {
         console.log('fetch data from the network');
         setProducts(data);
-      });
+      })
+      .catch(error => setError('Error!'))
+      .finally(() => setLoading(false));
     return () => {
       console.log('callback when the component is unmounted')
     }
   }, [checked]);
+
+  if (loading) return <p>Loading</p>;
+
+  if (error) return <p>{error}</p>;
 
   return (
     <>
