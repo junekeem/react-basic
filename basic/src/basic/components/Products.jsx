@@ -1,37 +1,13 @@
 import { useEffect, useState } from "react";
+import useProducts from "../../hook/use-products";
 
 export default function Products() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-  const [products, setProducts] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [loading, error, products] = useProducts({ salesOnly: checked });
 
   const handleChange = () => {
     setChecked((prev) => !prev)
   };
-
-  // fetch('data/products.json')
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log('fetch data from the network');
-  //     setProducts(data);
-  //   })
-
-  useEffect(() => {
-    setLoading(true);
-    setError(undefined);
-    fetch(`data/${checked ? 'sale_' : ''}products.json`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('fetch data from the network');
-        setProducts(data);
-      })
-      .catch(error => setError('Error!'))
-      .finally(() => setLoading(false));
-    return () => {
-      console.log('callback when the component is unmounted')
-    }
-  }, [checked]);
 
   if (loading) return <p>Loading</p>;
 
