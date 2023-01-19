@@ -1,9 +1,13 @@
-import Task from "./Task";
+import Task from "../Task";
 import { useState } from "react";
+import AddTask from "../AddTask/AddTask";
 
 export default function TaskList() {
   const [list, setList] = useState([]);
-  const [input, setInput] = useState('');
+
+  const handleAdd = (task) => {
+    setList(prev => [...prev, task.trim()]);
+  }
 
   return (
     <>
@@ -21,16 +25,7 @@ export default function TaskList() {
         </ul>
       </section>
 
-      <input value={input} onChange={(e) => {
-        setInput(e.target.value)
-      }}/>
-      <button onClick={() => {
-        if (!input.trim()) {
-          return;
-        }
-        setList(prev => [...prev, input.trim()]);
-      }}>Add
-      </button>
+      <AddTask onAdd={handleAdd}/>
     </>
   )
 }
