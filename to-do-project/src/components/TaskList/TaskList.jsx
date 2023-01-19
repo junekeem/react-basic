@@ -21,7 +21,7 @@ export default function TaskList() {
       <section>
         <ul>
           {list.map((task) =>
-            <li key={task.id}><Task taskName={task.taskName}></Task></li>)}
+            <li key={task.id}><Task task={task}></Task></li>)}
         </ul>
       </section>
 

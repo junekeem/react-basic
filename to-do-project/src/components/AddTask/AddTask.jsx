@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AddTask({ onAdd }) {
   const [input, setInput] = useState('');
@@ -10,7 +11,7 @@ export default function AddTask({ onAdd }) {
     if (!input.trim()) {
       return;
     }
-    onAdd({ id: 'unique', status: true, taskName: input });
+    onAdd({ id: uuidv4(), status: false, taskName: input });
     setInput('');
   }
 
