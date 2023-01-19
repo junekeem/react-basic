@@ -2,7 +2,7 @@ import Task from "../Task/Task";
 import { useState } from "react";
 import AddTask from "../AddTask/AddTask";
 
-export default function TaskList() {
+export default function TaskList({ filter }) {
   const [list, setList] = useState([]);
 
   const handleAdd = (task) => {
@@ -15,18 +15,13 @@ export default function TaskList() {
     setList(list.filter(task => task.id !== deletedTask.id));
   }
 
+  const filtered = getFilteredList(list, filter);
+
   return (
     <>
-      <button>All</button>
-      <button onClick={() => {
-        setList(prevState => [prevState.filter((task) => task.status === false)])
-      }}>Active
-      </button>
-      <button>Completed</button>
-
       <section>
         <ul>
-          {list.map((task) =>
+          {filtered.map((task) =>
             <Task
               key={task.id}
               task={task}
@@ -38,4 +33,11 @@ export default function TaskList() {
       </section>
     </>
   )
+}
+
+function getFilteredList(list, filter) {
+  if (filter === 'all') {
+    return list;
+  }
+  return  list.filter((task) => task.status === filter);
 }

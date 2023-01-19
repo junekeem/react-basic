@@ -11,7 +11,7 @@ export default function AddTask({ onAdd }) {
     if (!input.trim()) {
       return;
     }
-    onAdd({ id: uuidv4(), status: false, taskName: input });
+    onAdd({ id: uuidv4(), status: 'active', taskName: input });
     setInput('');
   }
 

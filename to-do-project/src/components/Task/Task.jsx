@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
 export default function Task({ task, onUpdate, onDelete }) {
@@ -7,13 +6,13 @@ export default function Task({ task, onUpdate, onDelete }) {
     onDelete(task);
   }
   const handleChange = (e) => {
-    onUpdate({ ...task, status: e.target.checked });
+    onUpdate({ ...task, status: e.target.checked ? 'completed' : 'active' });
   }
 
   return (
     <li>
-      <input type='checkbox' id="status" checked={status} onChange={handleChange}/>
-      <label htmlFor="status">{task.taskName}</label>
+      <input type='checkbox' id="checkbox" checked={status === 'completed'} onChange={handleChange}/>
+      <label htmlFor="checkbox">{taskName}</label>
       <button onClick={handleDelete}>
         <FaTrashAlt/>
       </button>
