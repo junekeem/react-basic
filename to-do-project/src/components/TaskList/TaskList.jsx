@@ -6,7 +6,7 @@ export default function TaskList() {
   const [list, setList] = useState([]);
 
   const handleAdd = (task) => {
-    setList(prev => [...prev, task.trim()]);
+    setList(prev => [...prev, task]);
   }
 
   return (
@@ -21,7 +21,7 @@ export default function TaskList() {
       <section>
         <ul>
           {list.map((task) =>
-            <li key={task.id}><Task taskName={task}></Task></li>)}
+            <li key={task.id}><Task taskName={task.taskName}></Task></li>)}
         </ul>
       </section>
 
