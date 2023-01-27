@@ -1,6 +1,7 @@
 import Task from "../Task/Task";
 import { useState } from "react";
 import AddTask from "../AddTask/AddTask";
+import styles from "./TaskList.module.css";
 
 export default function TaskList({ filter }) {
   const [list, setList] = useState([]);
@@ -19,8 +20,8 @@ export default function TaskList({ filter }) {
 
   return (
     <>
-      <section>
-        <ul>
+      <section className={styles.container}>
+        <ul className={styles.list}>
           {filtered.map((task) =>
             <Task
               key={task.id}
@@ -39,5 +40,5 @@ function getFilteredList(list, filter) {
   if (filter === 'all') {
     return list;
   }
-  return  list.filter((task) => task.status === filter);
+  return list.filter((task) => task.status === filter);
 }
