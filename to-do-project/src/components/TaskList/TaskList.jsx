@@ -1,10 +1,10 @@
 import Task from "../Task/Task";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "../AddTask/AddTask";
 import styles from "./TaskList.module.css";
 
 export default function TaskList({ filter }) {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(readListFromLocalStorage);
 
   const handleAdd = (task) => {
     setList(prev => [...prev, task]);
@@ -15,6 +15,10 @@ export default function TaskList({ filter }) {
   const handleDelete = (deletedTask) => {
     setList(list.filter(task => task.id !== deletedTask.id));
   }
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list])
 
   const filtered = getFilteredList(list, filter);
 
@@ -34,6 +38,11 @@ export default function TaskList({ filter }) {
       </section>
     </>
   )
+}
+
+function readListFromLocalStorage() {
+  const list = localStorage.getItem('list');
+  return list ? JSON.parse(list) : [];
 }
 
 function getFilteredList(list, filter) {

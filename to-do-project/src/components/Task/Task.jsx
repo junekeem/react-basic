@@ -2,7 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import styles from './Task.module.css'
 
 export default function Task({ task, onUpdate, onDelete }) {
-  const { status, taskName } = task;
+  const { id, status, taskName } = task;
   const handleDelete = () => {
     onDelete(task);
   }
@@ -12,8 +12,9 @@ export default function Task({ task, onUpdate, onDelete }) {
 
   return (
     <li className={styles.task}>
-      <input className={styles.checkbox} type='checkbox' id="checkbox" checked={status === 'completed'} onChange={handleChange}/>
-      <label className={styles.text} htmlFor="checkbox">{taskName}</label>
+      <input className={styles.checkbox} type='checkbox' id={id} checked={status === 'completed'}
+             onChange={handleChange}/>
+      <label className={styles.text} htmlFor={id}>{taskName}</label>
       <span className={styles.icon}>
       <button className={styles.button} onClick={handleDelete}>
         <FaTrashAlt/>
